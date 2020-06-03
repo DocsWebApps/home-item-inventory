@@ -36,7 +36,7 @@ public class ItemLocationServiceImpl implements ItemLocationService {
     public ItemLocationDto getLocationById(Long id) {
         log.info("ItemLocationServiceImpl: getLocationById() called with: {}", id);
         return this.itemLocationRepository.findById(id)
-            .map(itemLocationMapper::entityToDto).orElse(null);
+            .map(itemLocationMapper::entityToDto).orElseGet(() -> null);
     }
 
     @Override
@@ -49,4 +49,26 @@ public class ItemLocationServiceImpl implements ItemLocationService {
             throw new EntryAlreadyExistsException(itemLocationDto.getName());
         }
     }
+
+    @Override
+    public boolean updateLocation(Long id, ItemLocationDto itemLocationDto) {
+        log.info("ItemLocationServiceImpl: updateLocation() called with id: {}, and dto: {}", id, itemLocationDto.toString());
+        return this.itemLocationRepository.findById(id)
+            .map(itemLocationEntity -> {
+                itemLocationEntity.setName(itemLocationDto.getName());
+                this.itemLocationRepository.save(itemLocationEntity);
+                return true;}
+            ).orElseGet(() -> false);
+    }
+
+    @Override
+    public boolean deleteLocation(Long id) {
+        log.info("ItemLocationServiceImpl: deleteLocation() called with id: {}", id);
+        return this.itemLocationRepository.findById(id)
+            .map(itemLocationEntity -> {
+                this.itemLocationRepository.deleteById(id);
+                return true;}
+            ).orElseGet(() -> false);
+    }
+
 }

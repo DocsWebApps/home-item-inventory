@@ -26,7 +26,7 @@ public class ItemLocationRestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ItemLocationDto>> getAllLocations() {
+    public ResponseEntity<List<ItemLocationDto>> getAllResources() {
         log.info("ItemLocationRestController: getAllLocations() called");
         List<ItemLocationDto> itemLocations =  this.itemLocationService.getAllLocations();
         return  itemLocations.isEmpty()
@@ -35,7 +35,7 @@ public class ItemLocationRestController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ItemLocationDto> getLocationById(@PathVariable("id") Long id) {
+    public ResponseEntity<ItemLocationDto> getResourceById(@PathVariable("id") Long id) {
         log.info("ItemLocationRestController: getLocationById() called with id: {}", id);
         ItemLocationDto itemLocation = this.itemLocationService.getLocationById(id);
         return itemLocation == null
@@ -44,7 +44,7 @@ public class ItemLocationRestController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createLocation(@Valid @RequestBody ItemLocationDto itemLocationDto) throws Exception {
+    public ResponseEntity<String> createResource(@Valid @RequestBody ItemLocationDto itemLocationDto) throws Exception {
         log.info("ItemLocationRestController: createLocation() called with id: {}", itemLocationDto.toString());
         try {
             Long id = this.itemLocationService.createLocation(itemLocationDto);
@@ -55,4 +55,22 @@ public class ItemLocationRestController {
             return ResponseEntity.badRequest().body("Entry "+ ex.getEntry() + " already exists!");
         }
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updateResourceById(@PathVariable("id") Long id, @Valid @RequestBody ItemLocationDto itemLocationDto) {
+        log.info("ItemLocationRestController: updateLocation() called with id: {} and dto: {}", id, itemLocationDto.toString());
+        return this.itemLocationService.updateLocation(id, itemLocationDto)
+                ? ResponseEntity.noContent().build()
+                : ResponseEntity.badRequest().body("Error updating Location. Contact an administrator!");
+
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteResourceById(@PathVariable("id") Long id) {
+        log.info("ItemLocationRestController: deleteLocation() called with id: {}", id);
+        return this.itemLocationService.deleteLocation(id)
+                ? ResponseEntity.noContent().build()
+                : ResponseEntity.badRequest().body("Error deleting Location. Contact an administrator!");
+    }
+
 }
