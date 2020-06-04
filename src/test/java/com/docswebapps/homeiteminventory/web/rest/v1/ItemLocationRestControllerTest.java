@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(ItemLocationRestController.class)
-class ItemLocationRestControllerTest extends BaseRestTest {
+public class ItemLocationRestControllerTest extends BaseV1RestTest {
     private final static String API_URL="/api/v1/location";
 
     @MockBean
