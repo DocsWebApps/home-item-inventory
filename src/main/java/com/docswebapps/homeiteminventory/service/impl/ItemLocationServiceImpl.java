@@ -1,15 +1,16 @@
 package com.docswebapps.homeiteminventory.service.impl;
 
 import com.docswebapps.homeiteminventory.domain.ItemLocationEntity;
+import com.docswebapps.homeiteminventory.exception.EntryAlreadyExistsException;
 import com.docswebapps.homeiteminventory.repository.ItemLocationRepository;
 import com.docswebapps.homeiteminventory.service.ItemLocationService;
-import com.docswebapps.homeiteminventory.exception.EntryAlreadyExistsException;
 import com.docswebapps.homeiteminventory.service.mapper.ItemLocationMapper;
 import com.docswebapps.homeiteminventory.web.dto.ItemLocationDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,7 +41,7 @@ public class ItemLocationServiceImpl implements ItemLocationService {
     }
 
     @Override
-    public Long createLocation(ItemLocationDto itemLocationDto) throws Exception {
+    public Long createLocation(ItemLocationDto itemLocationDto) throws EntryAlreadyExistsException {
         try {
             log.info("ItemLocationServiceImpl: createLocation() called with: {}", itemLocationDto.toString());
             ItemLocationEntity itemLocationEntity = itemLocationMapper.dtoToEntity(itemLocationDto);

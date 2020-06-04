@@ -21,7 +21,3 @@ public class ItemLocationDto extends BaseDto {
         this.name = name;
     }
 }
-
-/*
-{"name":"Lounge"}
- */

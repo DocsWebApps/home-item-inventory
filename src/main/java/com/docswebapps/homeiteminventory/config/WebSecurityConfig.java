@@ -15,12 +15,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.headers().frameOptions().disable(); // Required to use H2 in memory DB - remove for Prod
         http.authorizeRequests()
-                .antMatchers("/**").permitAll()
-//                .antMatchers(HttpMethod.POST,LOCATION_URL_V1).permitAll()
-//                .antMatchers(HttpMethod.GET,LOCATION_URL_V1).permitAll()
-//                .antMatchers(HttpMethod.PUT,LOCATION_URL_V1+"/**").permitAll()
-//                .antMatchers(HttpMethod.DELETE,LOCATION_URL_V1+"/**").permitAll()
-//                .antMatchers(HttpMethod.GET, LOCATION_URL_V1+"/**").permitAll()
+                .antMatchers(HttpMethod.POST,LOCATION_URL_V1).permitAll()
+                .antMatchers(HttpMethod.GET,LOCATION_URL_V1).permitAll()
+                .antMatchers(HttpMethod.PUT,LOCATION_URL_V1+"/**").permitAll()
+                .antMatchers(HttpMethod.DELETE,LOCATION_URL_V1+"/**").permitAll()
+                .antMatchers(HttpMethod.GET, LOCATION_URL_V1+"/**").permitAll()
                 .anyRequest().authenticated()
                 .and().cors()
                 .and().csrf().disable();
