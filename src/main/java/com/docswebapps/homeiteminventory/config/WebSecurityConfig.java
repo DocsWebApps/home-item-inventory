@@ -20,6 +20,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PUT,LOCATION_URL_V1+"/**").permitAll()
                 .antMatchers(HttpMethod.DELETE,LOCATION_URL_V1+"/**").permitAll()
                 .antMatchers(HttpMethod.GET, LOCATION_URL_V1+"/**").permitAll()
+                .antMatchers("/**").permitAll() // remove when finished
                 .anyRequest().authenticated()
                 .and().cors()
                 .and().csrf().disable();
