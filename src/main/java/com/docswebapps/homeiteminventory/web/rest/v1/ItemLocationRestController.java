@@ -1,9 +1,8 @@
 package com.docswebapps.homeiteminventory.web.rest.v1;
 
-import com.docswebapps.homeiteminventory.service.ItemLocationService;
 import com.docswebapps.homeiteminventory.exception.EntryAlreadyExistsException;
+import com.docswebapps.homeiteminventory.service.ItemLocationService;
 import com.docswebapps.homeiteminventory.web.dto.ItemLocationDto;
-
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
@@ -44,7 +44,7 @@ public class ItemLocationRestController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createResource(@Valid @RequestBody ItemLocationDto itemLocationDto) throws Exception {
+    public ResponseEntity<String> createResource(@Valid @RequestBody ItemLocationDto itemLocationDto) throws EntryAlreadyExistsException, URISyntaxException {
         log.info("ItemLocationRestController: createLocation() called with id: {}", itemLocationDto.toString());
         try {
             Long id = this.itemLocationService.createLocation(itemLocationDto);

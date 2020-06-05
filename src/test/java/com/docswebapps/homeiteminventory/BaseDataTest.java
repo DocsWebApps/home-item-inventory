@@ -2,21 +2,13 @@ package com.docswebapps.homeiteminventory;
 
 import com.docswebapps.homeiteminventory.domain.ItemLocationEntity;
 import com.docswebapps.homeiteminventory.web.dto.ItemLocationDto;
-import org.junit.jupiter.api.Test;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public class BaseDataTest {
-    @Test
-    void baseTest() {
-        assertEquals(1,1);
-    }
-
     public ItemLocationDto itemLocationDto = ItemLocationDto.builder().name("Test Name").build();
 
     public List<ItemLocationEntity> itemLocationEntities = Arrays.asList(
