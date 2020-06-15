@@ -7,7 +7,6 @@ import org.mapstruct.Mapping;
 
 @Mapper(uses = DateMapper.class)
 public interface ItemLocationMapper {
-
     ItemLocationDto entityToDto(ItemLocationEntity itemLocationEntity);
 
     @Mapping(target = "version", ignore = true)

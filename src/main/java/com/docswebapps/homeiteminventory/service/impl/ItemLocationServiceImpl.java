@@ -30,23 +30,25 @@ public class ItemLocationServiceImpl implements ItemLocationService {
     public List<ItemLocationDto> getAllLocations() {
         log.info("ItemLocationServiceImpl: getAllLocations() called");
         return this.itemLocationRepository.findAll().stream()
-            .map(itemLocationMapper::entityToDto).collect(Collectors.toList());
+            .map(itemLocationMapper::entityToDto)
+            .collect(Collectors.toList());
     }
 
     @Override
     public ItemLocationDto getLocationById(Long id) {
         log.info("ItemLocationServiceImpl: getLocationById() called with: {}", id);
         return this.itemLocationRepository.findById(id)
-            .map(itemLocationMapper::entityToDto).orElseGet(() -> null);
+            .map(itemLocationMapper::entityToDto)
+            .orElseGet(() -> null);
     }
 
     @Override
     public Long createLocation(ItemLocationDto itemLocationDto) throws EntryAlreadyExistsException {
+        log.info("ItemLocationServiceImpl: createLocation() called with dto: {}", itemLocationDto.toString());
         try {
-            log.info("ItemLocationServiceImpl: createLocation() called with: {}", itemLocationDto.toString());
             ItemLocationEntity itemLocationEntity = itemLocationMapper.dtoToEntity(itemLocationDto);
             return this.itemLocationRepository.save(itemLocationEntity).getId();
-        }  catch(DataIntegrityViolationException e){
+        }  catch(DataIntegrityViolationException ex){
             throw new EntryAlreadyExistsException(itemLocationDto.getName());
         }
     }

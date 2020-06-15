@@ -1,3 +1,34 @@
 #home_page_controller {
     font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
 }
+
+#home_page_controller .jumbotron {
+    margin: 0px;
+    padding-top: 40px;
+    height: 550px;
+    background-image: url(../img/cactus2.png);
+    background-position: 0% 25%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: black;
+    text-align: left;
+}
+
+#home_page_controller #home-navbar {
+    background-color: #ECE8E5;
+    link: black;
+}
+
+#home_page_controller #copyright-section {
+    width: 100%;
+    background-color: #ECE8E5;
+    link: black;
+    height: 100px;
+    text-align: center;
+    font-size: 18px;
+    padding: 50px 0 0 0;
+}
+
+#home_page_controller #about-section {
+    padding-top: 50px;
+}
