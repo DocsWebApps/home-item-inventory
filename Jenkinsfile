@@ -6,7 +6,7 @@ node {
     }
 
     stage('check java') {
-        env.JAVA_HOME="${tool 'jdk11.0.4'}"
+        env.JAVA_HOME="${tool 'Java11'}"
         env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
         sh "java -version"
     }
