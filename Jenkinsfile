@@ -1,11 +1,11 @@
 #!/usr/bin/env groovy
 
 node {
-    stage('checkout') {
+    stage('checkout code') {
         checkout scm
     }
 
-    stage('check java') {
+    stage('set java version') {
         env.JAVA_HOME="${tool 'Java11'}"
         env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
         sh "java -version"
@@ -15,12 +15,12 @@ node {
         sh "cp /root/HomeItemInventory/application.properties ./src/main/resources"
     }
 
-    stage('clean') {
+    stage('maven clean') {
         sh "chmod +x mvnw"
         sh "./mvnw -s /opt/maven/mvn3/conf/settings.xml clean"
     }
 
-    stage('tests') {
+    stage('maven test') {
         try {
             sh "./mvnw -s /opt/maven/mvn3/conf/settings.xml test"
         } catch(err) {
@@ -30,12 +30,12 @@ node {
         }
     }
 
-    stage('packaging') {
+    stage('maven verify') {
         sh "./mvnw -s /opt/maven/mvn3/conf/settings.xml verify -DskipTests"
         archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
     }
 
-    stage('sonarqube quality analysis') {
+    stage('sonarqube analysis') {
         sh "cp /var/lib/jenkins/sonar_scripts/homeinv_sonar_dev.bash ."
         sh "./homeinv_sonar_dev.bash"
     }
