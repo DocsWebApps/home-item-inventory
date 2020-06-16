@@ -32,7 +32,7 @@ node {
 
     stage('packaging') {
         sh "./mvnw -s /opt/maven/mvn3/conf/settings.xml verify -DskipTests"
-        archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
+        archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
     }
 
     stage('sonarqube quality analysis') {
