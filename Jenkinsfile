@@ -11,6 +11,10 @@ node {
         sh "java -version"
     }
 
+    stage('set H2 DB') {
+        sh "cp /root/HomeItemInventory/application.properties ./src/main/resources"
+    }
+
     stage('clean') {
         sh "chmod +x mvnw"
         sh "./mvnw -s /opt/maven/mvn3/conf/settings.xml clean"
