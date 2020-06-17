@@ -11,8 +11,8 @@ node {
         sh "java -version"
     }
 
-    stage('set H2 DB') {
-        sh "cp /root/HomeItemInventory/application.properties ./src/main/resources"
+    stage('set H2 DB for test') {
+        sh "cp /root/HomeItemInventory/application.properties.h2 ./src/main/resources/application.properties"
     }
 
     stage('maven clean') {
@@ -30,6 +30,10 @@ node {
         }
     }
 
+    stage('set mariaDB DB for build') {
+        sh "cp /root/HomeItemInventory/application.properties.mariadb ./src/main/resources/application.properties"
+    }
+
     stage('maven verify') {
         sh "./mvnw -s /opt/maven/mvn3/conf/settings.xml verify -DskipTests"
         archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
@@ -45,8 +49,8 @@ node {
         sh "docker build -t home-item-inventory ./target"
     }
 
-//    stage('restart containers') {
-//        sh "docker-compose -f /root/ApplicationSupportDashboard/docker-compose.yml down"
-//        sh "docker-compose -f /root/ApplicationSupportDashboard/docker-compose.yml up -d"
-//    }
+    stage('start/restart containers') {
+        sh "docker-compose -f /root/HomeItemInventory/docker-compose.yml down"
+        sh "docker-compose -f /root/HomeItemInventory/docker-compose.yml up -d"
+    }
 }
