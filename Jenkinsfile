@@ -40,10 +40,11 @@ node {
         sh "./homeinv_sonar_dev.bash"
     }
 
-//    stage('build docker image') {
-//          sh "cp /root/ApplicationSupportDashboard/Dockerfile ./target"
-//          sh "./mvnw -s /opt/maven/mvn3/conf/settings.xml -Dmaven.test.skip=true -Pprod dockerfile:build"
-//      }
+    stage('build docker image') {
+        sh " cd ./target"
+        sh "cp /root/HomeItemInventory/Dockerfile ./target"
+        sh "docker build -t docswebapps/home-item-inventory ."
+    }
 //
 //    stage('restart containers') {
 //        sh "docker-compose -f /root/ApplicationSupportDashboard/docker-compose.yml down"
