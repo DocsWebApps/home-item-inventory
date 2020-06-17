@@ -42,9 +42,9 @@ node {
 
     stage('build docker image') {
         sh "cp /root/HomeItemInventory/Dockerfile ./target"
-        sh "docker build -t docswebapps/home-item-inventory ./target"
+        sh "docker build -t home-item-inventory ./target"
     }
-//
+
 //    stage('restart containers') {
 //        sh "docker-compose -f /root/ApplicationSupportDashboard/docker-compose.yml down"
 //        sh "docker-compose -f /root/ApplicationSupportDashboard/docker-compose.yml up -d"
