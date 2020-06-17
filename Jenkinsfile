@@ -41,9 +41,8 @@ node {
     }
 
     stage('build docker image') {
-        sh " cd ./target"
         sh "cp /root/HomeItemInventory/Dockerfile ./target"
-        sh "docker build -t docswebapps/home-item-inventory ."
+        sh "docker build -t docswebapps/home-item-inventory ./target"
     }
 //
 //    stage('restart containers') {
