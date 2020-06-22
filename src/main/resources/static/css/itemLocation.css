@@ -1,0 +1,19 @@
+#item_location_controller {
+    font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+}
+
+
+#item_location_controller #home-navbar {
+    background-color: #ECE8E5;
+    link: black;
+}
+
+#item_location_controller #copyright-section {
+    width: 100%;
+    background-color: #ECE8E5;
+    link: black;
+    height: 100px;
+    text-align: center;
+    font-size: 18px;
+    padding: 50px 0 0 0;
+}
