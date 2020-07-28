@@ -1,16 +1,13 @@
 package com.docswebapps.homeiteminventory.web.rest.v1;
 
-import com.docswebapps.homeiteminventory.BaseDataTest;
+import com.docswebapps.homeiteminventory.web.BaseWebTest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.web.servlet.MockMvc;
 
-public abstract class BaseV1RestTest extends BaseDataTest {
+public abstract class BaseV1RestTest extends BaseWebTest {
+
     @Autowired
     ObjectMapper objectMapper;
-
-    @Autowired
-    MockMvc mockMvc;
 
     abstract void createResource() throws Exception;
     abstract void updateResourceById() throws Exception;
