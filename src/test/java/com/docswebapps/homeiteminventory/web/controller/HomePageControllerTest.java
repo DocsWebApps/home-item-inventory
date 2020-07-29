@@ -13,10 +13,11 @@ public class HomePageControllerTest extends BaseWebTest {
 
     @Test
     void testReturnHomePage() throws Exception {
-        mockMvc.perform(get("/").with(httpBasic("user", "user")))
+        mockMvc.perform(get("/").with(httpBasic("lard", "elbow")))
             .andExpect(status().isOk())
             .andExpect(view().name("homePage"))
-            .andExpect(model().attributeExists("homeTitle"));
+            .andExpect(model().attributeExists("homeTitle"))
+            .andExpect(model().attributeExists("year"));
     }
 
 }

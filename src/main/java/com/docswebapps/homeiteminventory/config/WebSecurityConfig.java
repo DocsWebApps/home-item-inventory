@@ -2,7 +2,6 @@ package com.docswebapps.homeiteminventory.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -34,16 +33,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //
 //    // Method1: Fluent API
 //    // {noop} - used to not encrypt password ie: .password("{noop}admin")
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-            .withUser("admin")
-            .password("{noop}admin")
-            .roles("ADMIN")
-            .and()
-            .withUser("user")
-            .password("{noop}user")
-            .roles("USER");
-    }
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.inMemoryAuthentication()
+//            .withUser("admin")
+//            .password("{noop}admin")
+//            .roles("ADMIN")
+//            .and()
+//            .withUser("user")
+//            .password("{noop}user")
+//            .roles("USER");
+//    }
 //
 ////    // Method2: Configure the UserDetailsService
 //    @Override
