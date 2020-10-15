@@ -8,7 +8,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class
+WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String API_LOCATION_URL_V1="/api/v1";
     private static final String WEB_LOCATION_URL="/web";
 

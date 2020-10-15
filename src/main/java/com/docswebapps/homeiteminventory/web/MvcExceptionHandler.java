@@ -36,6 +36,7 @@ public class MvcExceptionHandler {
     ResponseEntity<List> constraintViolationHandler(ConstraintViolationException e){
         List<String> errors = new ArrayList<>(e.getConstraintViolations().size());
 
+        errors.add("ConstraintViolationException:");
         e.getConstraintViolations().forEach(constraintViolation -> {
             errors.add(constraintViolation.getPropertyPath().toString() + " : " + constraintViolation.getMessage());
         });
